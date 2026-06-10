@@ -2,7 +2,7 @@ import streamlit as st
 import math
 
 # --- 1. CONFIGURAÇÃO DA INTERFACE ---
-st.set_page_config(page_title="Engenharia de Motores", layout="wide", page_icon="⚙️")
+st.set_page_config(page_title="MOTORS CALCULATOR", layout="wide", page_icon="⚙️")
 
 st.markdown("""
     <style>
@@ -20,7 +20,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.title("⚙️ EGC Calculadora de Motores - PRO")
+st.title("⚙️ MOTORS CALCULATOR")
 st.markdown("Cálculos avançados para projeto e preparação de motores.")
 st.markdown("---")
 
@@ -96,17 +96,16 @@ with aba3:
     tipo_cabecote = st.radio("Selecione o tipo de Cabeçote:", ["2 Válvulas (1 ADM / 1 ESC)", "4 Válvulas (2 ADM / 2 ESC)"])
     
     # MATEMÁTICA ABA 3 - TBI/Carburador
-    # Fórmula empírica: D = 0.82 * sqrt(Cil_unit * (RPM/1000))
     diametro_tbi = 0.82 * math.sqrt(cil_unit * (rpm / 1000))
     
     # MATEMÁTICA ABA 3 - Válvulas e Dutos
     if "2 Válvulas" in tipo_cabecote:
-        valvula_adm = diametro * 0.50  # Regra: ~50% do pistão
-        valvula_esc = valvula_adm * 0.80 # Regra: ~80% da admissão
-        duto_adm = valvula_adm * 0.80  # Regra: gargalo do duto a 80% da válvula
+        valvula_adm = diametro * 0.50
+        valvula_esc = valvula_adm * 0.80
+        duto_adm = valvula_adm * 0.80
         duto_esc = valvula_esc * 0.85
     else:
-        valvula_adm = diametro * 0.36  # Regra 4V: ~36% do pistão (x2)
+        valvula_adm = diametro * 0.36
         valvula_esc = valvula_adm * 0.82
         duto_adm = valvula_adm * 0.85
         duto_esc = valvula_esc * 0.85
